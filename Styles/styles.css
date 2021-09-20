@@ -1,16 +1,20 @@
 html {
     
     --border: 2px solid black;
+    
+    height: 100%;
+}
+
+html, main {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    text-align: center;
 }
 
 .game-container {
     width: 50%;
-    background-color: aliceblue;
     max-width: 80vw;
     max-height: 80vw;
     height: 100vw;
@@ -87,4 +91,12 @@ h1 {
 .bottom-right {
     border-left: var(--border);
     border-top: var(--border);
+}
+
+.play-again {
+    visibility: hidden;
+}
+
+.active {
+    visibility: visible !important;
 }

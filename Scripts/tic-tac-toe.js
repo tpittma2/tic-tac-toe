@@ -19,6 +19,14 @@ const gameboard = (() => {
     //     [[0,0], [0,1], [0,2]],
     // ]
 
+    const resetBoard = ()=> {
+        for(let row=0; row<boardArray.length;row++) {
+            for(let col=0; col < boardArray.length;col++) {
+                boardArray[row][col] = '';
+            }
+        }
+    }
+
     const isEmpty = (rowIdx, colIdx) => { 
         let valueAt = boardArray[rowIdx][colIdx];
         return valueAt === ''
@@ -74,6 +82,7 @@ const gameboard = (() => {
         markSpot,
         getWinner,
         isTie,
+        resetBoard,
     }
 })();
 
@@ -81,9 +90,12 @@ const gameController = (()=> {
     let player1;
     let player2;
     let isPlayer1Turn = true;
+    let isGameOver = false;
+    const ACTIVE_CLASS = 'active';
 
-    const gameContainer = document.querySelector('.game-container');
+    const btnPlayAgain = document.querySelector('.play-again');
     const gameSquares = document.querySelectorAll('.row div');
+    const txtCurrentPlayer = document.querySelector('.current-player');
 
     const setPlayer1 = (player) => {
         player1 = player;
@@ -99,11 +111,33 @@ const gameController = (()=> {
             
             element.addEventListener('click', playRound);      
         }
+
+        btnPlayAgain.addEventListener('click', resetGame);
+        resetGame();
+    }
+
+   resetGame = () => {
+        gameboard.resetBoard();
+        for (let i = 0; i < gameSquares.length; i++) {
+            gameSquares[i].textContent = '';
+                
+        }
+        isGameOver = false;
+        isPlayer1Turn = true;
+        btnPlayAgain.classList.remove(ACTIVE_CLASS);
+        txtCurrentPlayer.textContent = `${getCurrentPlayer().getName()}'s Turn`;
     }
 
     
 
+    getCurrentPlayer = () => {
+        return isPlayer1Turn ? player1 : player2;
+    }
+
+
     function playRound(e) {
+        if(isGameOver)
+        return;
         let row = e.target.dataset.row;
         let col = e.target.dataset.column;
         let currSymbol = isPlayer1Turn ? player1.getSymbol() : player2.getSymbol();
@@ -112,14 +146,16 @@ const gameController = (()=> {
             gameboard.markSpot(row,col,currSymbol);
             isPlayer1Turn = !isPlayer1Turn;
             e.target.textContent = currSymbol;
+            txtCurrentPlayer.textContent = `${getCurrentPlayer().getName()}'s Turn`;
         }
         let winner = gameboard.getWinner();
-        if(winner)
+        if(winner || gameboard.isTie())
         {
-            alert(`${winner == player1.getSymbol() ? player1.getName() : player2.getName()} is the winner!`);
+            isGameOver = true;
+            btnPlayAgain.classList.add(ACTIVE_CLASS);
+            txtCurrentPlayer.textContent = (winner ? `${winner == player1.getSymbol() ? player1.getName() : player2.getName()} is the winner!` :`Tie Game!`);
         }
-        if(gameboard.isTie())
-            alert('Tie Game!');
+    
     }
 
     return {setPlayer1, setPlayer2, startGame}

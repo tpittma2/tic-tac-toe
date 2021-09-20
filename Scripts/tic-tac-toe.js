@@ -91,7 +91,7 @@ const gameController = (()=> {
     let player2;
     let isPlayer1Turn = true;
     let isGameOver = false;
-    const ACTIVE_CLASS = 'active';
+    const BUTTON_VISIBLE_CLASS = 'visible';
 
     const btnPlayAgain = document.querySelector('.play-again');
     const gameSquares = document.querySelectorAll('.row div');
@@ -124,7 +124,7 @@ const gameController = (()=> {
         }
         isGameOver = false;
         isPlayer1Turn = true;
-        btnPlayAgain.classList.remove(ACTIVE_CLASS);
+        btnPlayAgain.classList.remove(BUTTON_VISIBLE_CLASS);
         txtCurrentPlayer.textContent = `${getCurrentPlayer().getName()}'s Turn`;
     }
 
@@ -152,7 +152,7 @@ const gameController = (()=> {
         if(winner || gameboard.isTie())
         {
             isGameOver = true;
-            btnPlayAgain.classList.add(ACTIVE_CLASS);
+            btnPlayAgain.classList.add(BUTTON_VISIBLE_CLASS);
             txtCurrentPlayer.textContent = (winner ? `${winner == player1.getSymbol() ? player1.getName() : player2.getName()} is the winner!` :`Tie Game!`);
         }
     
@@ -162,8 +162,8 @@ const gameController = (()=> {
 
 })();
 
-gameController.setPlayer1(Player('Player 1', 'X'));
-gameController.setPlayer2(Player('Player 2', 'O'));
+gameController.setPlayer1(Player('Player X', 'X'));
+gameController.setPlayer2(Player('Player O', 'O'));
 gameController.startGame();
 
 

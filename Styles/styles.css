@@ -1,24 +1,31 @@
 html {
-    
+    --font: 'Varela Round', sans-serif;
     --border: 2px solid black;
-    
-    height: 100%;
+    font-family: var(--font);
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    /* display: flex;
+    flex-direction: column; */
+
 }
 
 html, main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     text-align: center;
 }
 
+
 .game-container {
     width: 50%;
-    max-width: 80vw;
-    max-height: 80vw;
-    height: 100vw;
-    width: 100vw;
+   
+    height: 500px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content:space-evenly;
@@ -26,8 +33,16 @@ html, main {
 
 }
 
+
+
 h1 {
     text-align: center;
+    font-size: 100px;
+    margin: 0;
+}
+
+h2 {
+    font-size: 50px;
 }
 
 .row {
@@ -38,11 +53,31 @@ h1 {
 }
 
 .row div {
-    font-size: 20vw;
+    font-size: 100px;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
+}
+
+@media (max-width: 660px) {
+    .game-container {
+        width: 300px;
+        height: 300px;
+    }
+
+    h1 {
+        font-size: 70px;
+    }
+
+    h2 {
+        font-size: 35px;
+    }
+
+    .row div {
+        font-size: 70px;
+    }
 }
 
 .top-left {
@@ -94,9 +129,16 @@ h1 {
 }
 
 .play-again {
+    margin-top: 15px;
     visibility: hidden;
+    font-size: 30px;
+    border-radius: 5px;
+}
+
+.visible {
+    visibility:visible !important;
 }
 
 .active {
-    visibility: visible !important;
+    display: flex !important;
 }

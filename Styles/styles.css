@@ -1,0 +1,90 @@
+html {
+    
+    --border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.game-container {
+    width: 50%;
+    background-color: aliceblue;
+    max-width: 80vw;
+    max-height: 80vw;
+    height: 100vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: stretch;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    flex: 1;
+}
+
+.row div {
+    font-size: 20vw;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-left {
+    border-right: var(--border);
+    border-bottom: var(--border);
+}
+
+.top-middle {
+    border-left: var(--border);
+    border-right: var(--border);
+    border-bottom: var(--border);
+}
+
+.top-right {
+    border-left: var(--border);
+    border-bottom: var(--border);
+}
+
+.middle-left {
+    border-top: var(--border);
+    border-right: var(--border);
+    border-bottom: var(--border);
+}
+
+.middle-middle {
+    border: var(--border);
+}
+
+.middle-right {
+    border-top: var(--border);
+    border-left: var(--border);
+    border-bottom: var(--border);
+}
+
+.bottom-left {
+    border-right: var(--border);
+    border-top: var(--border);
+}
+
+.bottom-middle {
+    border-left: var(--border);
+    border-right: var(--border);
+    border-top: var(--border);
+}
+
+.bottom-right {
+    border-left: var(--border);
+    border-top: var(--border);
+}
